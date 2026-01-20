@@ -28,7 +28,7 @@ public class SOLMaid {
 
         NeoForge.EVENT_BUS.register(OnMaidFoodEatenEvent.class);
         NeoForge.EVENT_BUS.register(OnMaidJoinWorldEvent.class);
-        NeoForge.EVENT_BUS.register(OnPlayerInteractMaidEvent.class);
+        NeoForge.EVENT_BUS.register(OnPlayerFeedMaidEvent.class);
         if(OnAddJadeInfoEvent.JADE_LOADED){
             NeoForge.EVENT_BUS.register(OnAddJadeInfoEvent.class);
         }
