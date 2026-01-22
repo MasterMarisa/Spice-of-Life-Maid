@@ -16,5 +16,13 @@
   "config.solmaid.server.favorability_per_milestone": "每达到一个新的里程碑，女仆增加的好感度",
   "config.solmaid.server.count_invalid_mod_food": "是否计入未加载的Mod食物",
   "config.solmaid.server.effect_auras": "根据达成的里程碑生效的效果光环",
-  "config.solmaid.client.item_per_line": "每行显示的食物数量"
+  "config.solmaid.client.item_per_line": "每行显示的食物数量",
+  "gui.solmaid.total_view.food_eaten": "食物收集:",
+  "gui.solmaid.total_view.hp_gained": "血量:",
+  "gui.solmaid.total_view.armor_gained": "护甲值:",
+  "gui.solmaid.total_view.armor_toughness_gained": "护甲韧性:",
+  "gui.solmaid.total_view.attack_damage_gained": "攻击伤害:",
+  "gui.solmaid.title.total_view": "概览",
+  "gui.solmaid.title.tasted_food": "尝过的食物",
+  "gui.solmaid.title.untried_food": "没尝过的食物"
 }

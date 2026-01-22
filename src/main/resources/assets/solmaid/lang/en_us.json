@@ -16,5 +16,13 @@
   "config.solmaid.server.favorability_per_milestone": "When a new milestone reached,the value of favorability your maid gains",
   "config.solmaid.server.count_invalid_mod_food": "Will food types of unloaded mods be included in",
   "config.solmaid.server.effect_auras": "Effect auras to apply decided by milestones reached",
-  "config.solmaid.client.item_per_line": "The count of food showed per line"
+  "config.solmaid.client.item_per_line": "The count of food showed per line",
+  "gui.solmaid.total_view.food_eaten": "Food Collected:",
+  "gui.solmaid.total_view.hp_gained": "HP Gained:",
+  "gui.solmaid.total_view.armor_gained": "Armor Gained:",
+  "gui.solmaid.total_view.armor_toughness_gained": "Armor Toughness Gained:",
+  "gui.solmaid.total_view.attack_damage_gained": "Attack Damage Gained:",
+  "gui.solmaid.title.total_view": "Overview",
+  "gui.solmaid.title.tasted_food": "Tasted food",
+  "gui.solmaid.title.untried_food": "Untried food"
 }

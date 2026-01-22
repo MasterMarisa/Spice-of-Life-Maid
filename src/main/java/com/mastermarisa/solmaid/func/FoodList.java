@@ -50,7 +50,7 @@ public class FoodList implements INBTSerializable<CompoundTag> {
                 MaxHealthHandler.updateFoodHPModifier(maid);
                 ArmorHandler.updateFoodArmorModifier(maid);
                 AttackDamageHandler.updateFoodArmorModifier(maid);
-                maid.getFavorabilityManager().add(ModConfig.getFavorbilityPerMilestone());
+                maid.getFavorabilityManager().add(ModConfig.getFavorabilityPerMilestone());
                 LivingEntity player = maid.getOwner();
                 if(player instanceof ServerPlayer serverPlayer){
                     serverPlayer.sendChatMessage(new OutgoingChatMessage.Disguised(Component.translatable("message.solmaid.milestone_achieved",Component.translatable("message.solmaid.hearts",ModConfig.getHeartsPerStone())).withStyle(ChatFormatting.AQUA)),false, ChatType.bind(ChatType.CHAT, serverPlayer));
@@ -60,7 +60,7 @@ public class FoodList implements INBTSerializable<CompoundTag> {
                     if(ModConfig.getAttackDamagePerStone() != 0){
                         serverPlayer.sendChatMessage(new OutgoingChatMessage.Disguised(Component.translatable("message.solmaid.milestone_achieved",Component.translatable("message.solmaid.attack_damage",ModConfig.getAttackDamagePerStone())).withStyle(ChatFormatting.AQUA)),false, ChatType.bind(ChatType.CHAT, serverPlayer));
                     }
-                    serverPlayer.sendChatMessage(new OutgoingChatMessage.Disguised(Component.translatable("message.solmaid.favorability_increased",ModConfig.getFavorbilityPerMilestone()).withStyle(ChatFormatting.AQUA)),false, ChatType.bind(ChatType.CHAT, serverPlayer));
+                    serverPlayer.sendChatMessage(new OutgoingChatMessage.Disguised(Component.translatable("message.solmaid.favorability_increased",ModConfig.getFavorabilityPerMilestone()).withStyle(ChatFormatting.AQUA)),false, ChatType.bind(ChatType.CHAT, serverPlayer));
                     if(this.getCachedMilestone() == ModConfig.getMileStones().size() - 1){
                         serverPlayer.sendChatMessage(new OutgoingChatMessage.Disguised(Component.translatable("message.solmaid.finished").withStyle(ChatFormatting.AQUA)),false, ChatType.bind(ChatType.CHAT, serverPlayer));
                     }
@@ -109,16 +109,6 @@ public class FoodList implements INBTSerializable<CompoundTag> {
     }
 
     public List<Item> getFoodItems(){
-        if(this.cachedItemList == null){
-            this.cachedItemList = new ArrayList<>();
-            for(String str : this.foods){
-                Item item = ModUtils.decodeItem(str);
-                if(item != null){
-                    this.cachedItemList.add(item);
-                }
-            }
-        }
-
-        return this.cachedItemList;
+        return foods.stream().map(ModUtils::decodeItem).toList();
     }
 }
