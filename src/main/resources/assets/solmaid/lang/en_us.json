@@ -10,7 +10,7 @@
   "message.solmaid.attack_damage": "%s attack damage",
   "screen.solmaid.title": "Eaten food list",
   "config.solmaid.server.milestones": "The count of types of food your maid has to eat to unlock milestones",
-  "config.solmaid.server.hearts_per_milestone": "When a new milestone reached,the count of hearts your maid gains",
+  "config.solmaid.server.hp_per_milestone": "When a new milestone reached,the hp your maid gains",
   "config.solmaid.server.armor_per_milestone": "When a new milestone reached,the value of armor value your maid gains",
   "config.solmaid.server.attack_damage_per_milestone" : "When a new milestone reached,the value of attack damage your maid gains",
   "config.solmaid.server.favorability_per_milestone": "When a new milestone reached,the value of favorability your maid gains",

@@ -1,0 +1,56 @@
+package com.mastermarisa.solmaid.event;
+
+import com.github.tartaricacid.touhoulittlemaid.api.task.meal.MaidMealType;
+import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
+import com.github.tartaricacid.touhoulittlemaid.network.NetworkHandler;
+import com.github.tartaricacid.touhoulittlemaid.network.message.SpawnParticlePackage;
+import com.mastermarisa.solmaid.SOLMaid;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
+
+@EventBusSubscriber(modid = SOLMaid.MOD_ID)
+public class MaidFeeding {
+    @SubscribeEvent
+    public static void onPlayerFeedMaid(PlayerInteractEvent.EntityInteract event){
+        Player player = event.getEntity();
+        Entity entity = event.getTarget();
+        if (player.level().isClientSide) return;
+
+        if (entity instanceof EntityMaid maid){
+            if(!player.getMainHandItem().isEmpty()){
+                ItemStack stack = player.getMainHandItem();
+                FoodProperties foodProperties = stack.getFoodProperties(maid);
+                if (foodProperties != null && !maid.isUsingItem()){
+                    InteractionHand hand;
+                    if (maid.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()){
+                        hand = InteractionHand.MAIN_HAND;
+                    } else if (maid.getItemInHand(InteractionHand.OFF_HAND).isEmpty()){
+                        hand = InteractionHand.OFF_HAND;
+                    } else return;
+                    ItemStack food = stack.split(1);
+                    maid.setItemInHand(hand,food);
+                    maid.getMaidBauble().fireEvent((b, s) -> {
+                        b.onMaidEat(maid, s, food, MaidMealType.HEAL_MEAL);
+                        return false;
+                    });
+                    maid.startUsingItem(hand);
+                    int nutrition = foodProperties.nutrition();
+                    float saturation = foodProperties.saturation();
+                    float total = (float)nutrition + saturation;
+                    if ((float)maid.getRandom().nextInt(5) < total) {
+                        float healCount = Math.max(total / 5.0F, 1.0F);
+                        maid.heal(healCount);
+                        NetworkHandler.sendToNearby(maid, new SpawnParticlePackage(maid.getId(), SpawnParticlePackage.Type.HEAL, stack.getUseDuration(maid)));
+                    }
+                    event.setCanceled(true);
+                }
+            }
+        }
+    }
+}
