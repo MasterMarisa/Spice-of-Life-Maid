@@ -1,7 +1,7 @@
 package com.mastermarisa.solmaid.init;
 
 import com.mastermarisa.solmaid.SOLMaid;
-import com.mastermarisa.solmaid.entity.FoodRecord;
+import com.mastermarisa.solmaid.data.FoodRecord;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.attachment.AttachmentType;
 import net.neoforged.neoforge.registries.DeferredRegister;

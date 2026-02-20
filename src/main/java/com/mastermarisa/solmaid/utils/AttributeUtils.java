@@ -2,7 +2,7 @@ package com.mastermarisa.solmaid.utils;
 
 import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
 import com.mastermarisa.solmaid.SOLMaid;
-import com.mastermarisa.solmaid.entity.FoodRecord;
+import com.mastermarisa.solmaid.data.FoodRecord;
 import com.mastermarisa.solmaid.init.InitConfig;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;

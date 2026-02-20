@@ -10,6 +10,10 @@ import java.util.List;
 public class InitConfig {
     public static List<? extends Integer> MILESTONES() { return Server.MILESTONES.get(); }
 
+    public static boolean ENABLE_BLACKLIST() { return Server.ENABLE_BLACKLIST.getAsBoolean(); }
+
+    public static List<? extends String> BLACKLIST() { return Server.BLACKLIST.get(); }
+
     public static int HP() { return Server.HP.getAsInt(); }
 
     public static int ARMOR() { return Server.ARMOR.getAsInt(); }
@@ -26,6 +30,8 @@ public class InitConfig {
         private static final ModConfigSpec.Builder BUILDER;
         private static final ModConfigSpec SPEC;
         public static final ModConfigSpec.ConfigValue<List<? extends Integer>> MILESTONES;
+        public static final ModConfigSpec.BooleanValue ENABLE_BLACKLIST;
+        public static final ModConfigSpec.ConfigValue<List<? extends String>> BLACKLIST;
         public static final ModConfigSpec.IntValue HP;
         public static final ModConfigSpec.IntValue ARMOR;
         public static final ModConfigSpec.IntValue ATTACK_DAMAGE;
@@ -41,6 +47,14 @@ public class InitConfig {
             MILESTONES = BUILDER
                     .translation("config.solmaid.server.milestones")
                     .defineList("milestones", Lists.newArrayList(10, 20, 30, 40, 50), () -> 0, (e) -> e instanceof Integer);
+
+            ENABLE_BLACKLIST = BUILDER
+                    .translation("config.solmaid.server.enable_blacklist")
+                    .define("enable_blacklist", true);
+
+            BLACKLIST = BUILDER
+                    .translation("config.solmaid.server.blacklist")
+                    .defineList("blacklist", Lists.newArrayList("minecraft:rotten_flesh"), () -> "", (e) -> e instanceof String);
 
             HP = BUILDER.translation("config.solmaid.server.hp_per_milestone")
                     .defineInRange("hpPerMileStone", 4, 0, 1000);

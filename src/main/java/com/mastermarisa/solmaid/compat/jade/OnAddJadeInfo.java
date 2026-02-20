@@ -2,8 +2,8 @@ package com.mastermarisa.solmaid.compat.jade;
 
 import com.github.tartaricacid.touhoulittlemaid.api.event.AddJadeInfoEvent;
 import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
-import com.mastermarisa.solmaid.entity.FoodRecord;
-import com.mastermarisa.solmaid.utils.Debug;
+import com.mastermarisa.solmaid.data.FoodRecord;
+import com.mastermarisa.solmaid.utils.FilterHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
@@ -22,10 +22,14 @@ public class OnAddJadeInfo {
         if(player == null) return;
         ItemStack stack = player.getMainHandItem();
         if(stack.getItem().getFoodProperties(stack,player) != null){
-            if(foodRecord.isFoodEaten(stack)){
-                tooltip.add(Component.translatable("tooltip.solmaid.jade_maid.eaten").withStyle(ChatFormatting.GRAY));
+            if (FilterHelper.filter(stack)) {
+                if(foodRecord.isFoodEaten(stack)){
+                    tooltip.add(Component.translatable("tooltip.solmaid.jade_maid.eaten").withStyle(ChatFormatting.GRAY));
+                } else {
+                    tooltip.add(Component.translatable("tooltip.solmaid.jade_maid.not_eaten").withStyle(ChatFormatting.AQUA));
+                }
             } else {
-                tooltip.add(Component.translatable("tooltip.solmaid.jade_maid.not_eaten").withStyle(ChatFormatting.AQUA));
+                tooltip.add(Component.translatable("tooltip.solmaid.jade_maid.invalid").withStyle(ChatFormatting.GRAY));
             }
         }
     }

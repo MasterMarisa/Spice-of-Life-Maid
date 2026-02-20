@@ -5,6 +5,7 @@ import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
 import com.github.tartaricacid.touhoulittlemaid.network.NetworkHandler;
 import com.github.tartaricacid.touhoulittlemaid.network.message.SpawnParticlePackage;
 import com.mastermarisa.solmaid.SOLMaid;
+import com.mastermarisa.solmaid.utils.FilterHelper;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -25,6 +26,7 @@ public class MaidFeeding {
         if (entity instanceof EntityMaid maid){
             if(!player.getMainHandItem().isEmpty()){
                 ItemStack stack = player.getMainHandItem();
+                if (!FilterHelper.filter(stack)) return;
                 FoodProperties foodProperties = stack.getFoodProperties(maid);
                 if (foodProperties != null && !maid.isUsingItem()){
                     InteractionHand hand;

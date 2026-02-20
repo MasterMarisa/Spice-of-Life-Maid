@@ -8,20 +8,19 @@ import com.mastermarisa.solmaid.client.gui.screen.elements.FoodViewPage;
 import com.mastermarisa.solmaid.client.gui.screen.elements.PageFlipButton;
 import com.mastermarisa.solmaid.client.gui.screen.elements.TotalViewPage;
 import com.mastermarisa.solmaid.client.gui.screen.elements.UIPage;
-import com.mastermarisa.solmaid.entity.FoodRecord;
+import com.mastermarisa.solmaid.data.FoodRecord;
+import com.mastermarisa.solmaid.utils.FilterHelper;
 import com.mastermarisa.solmaid.utils.ItemHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +74,7 @@ public class FoodListScreen extends Screen implements PageFlipButton.Pageable {
     public FoodListScreen(EntityMaid maid){
         super(Component.empty());
         this.foodList = maid.getData(FoodRecord.TYPE);
-        allFoodList = ItemHelper.allFoods;
+        allFoodList = ItemHelper.allFoods.stream().filter(i -> FilterHelper.filter(new ItemStack(i))).toList();
 
         initPages();
         initButtons();

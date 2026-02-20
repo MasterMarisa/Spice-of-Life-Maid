@@ -4,8 +4,9 @@ license="${mod_license}"
 
 [[mods]]
 modId="solmaid"
-version="1.0.0"
+version="1.0.1"
 displayName="Spice of Life: Maid"
+logoFile="icon.png"
 authors="摸里傻"
 
 description='''

@@ -2,12 +2,10 @@ package com.mastermarisa.solmaid.client.gui.screen.elements;
 
 import com.mastermarisa.solmaid.client.gui.UIConst;
 import com.mastermarisa.solmaid.client.gui.elements.*;
-import com.mastermarisa.solmaid.entity.FoodRecord;
+import com.mastermarisa.solmaid.data.FoodRecord;
 import com.mastermarisa.solmaid.init.InitConfig;
 import net.minecraft.network.chat.Component;
-import net.neoforged.fml.config.ModConfig;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

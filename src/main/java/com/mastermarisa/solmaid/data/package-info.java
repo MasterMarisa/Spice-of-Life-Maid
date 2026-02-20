@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package com.mastermarisa.solmaid.entity;
+package com.mastermarisa.solmaid.data;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
 

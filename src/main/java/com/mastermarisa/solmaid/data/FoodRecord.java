@@ -1,9 +1,8 @@
-package com.mastermarisa.solmaid.entity;
+package com.mastermarisa.solmaid.data;
 
 import com.github.tartaricacid.touhoulittlemaid.entity.passive.EntityMaid;
 import com.mastermarisa.solmaid.init.InitConfig;
 import com.mastermarisa.solmaid.utils.AttributeUtils;
-import com.mastermarisa.solmaid.utils.Debug;
 import com.mastermarisa.solmaid.utils.EncodeUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.HolderLookup;
@@ -32,6 +31,18 @@ public class FoodRecord implements INBTSerializable<CompoundTag> {
 
     public FoodRecord() {
         recorded = new ConcurrentSkipListSet<String>();
+        reached = -1;
+    }
+
+    public FoodRecord copy() {
+        FoodRecord c = new FoodRecord();
+        c.recorded = new ConcurrentSkipListSet<>(recorded);
+        c.reached = reached;
+        return c;
+    }
+
+    public void reset() {
+        recorded = new ConcurrentSkipListSet<>();
         reached = -1;
     }
 
